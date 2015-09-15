@@ -20,7 +20,7 @@ public class IocTest extends TestCase {
 
 	public void testioc() {
 		@SuppressWarnings("resource")
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/beans.xml");
 		/*
 		 * // 对象注入 SpringAction springAction = (SpringAction)
 		 * ctx.getBean("springAction"); springAction.ok(); // 普通用户注入 User user =
@@ -36,7 +36,7 @@ public class IocTest extends TestCase {
 		 * it.next(); Object key = entry.getKey(); Object value =
 		 * entry.getValue(); System.out.println(key + ":" + value); }
 		 */
-		UserHome userHome = (UserHome) ctx.getBean("userHome");
+		UserHome userHome = ctx.getBean("userHome",UserHome.class);
 		System.out.println("***********普通属性注入***********");
 		System.out.println(userHome.getUsername());
 		System.out.println(userHome.getAge());
