@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -12,6 +13,15 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
     ">
+    
+    <!-- 指定自动搜索Bean组件、自动搜索切面类 -->
+    <context:component-scan base-package="spring.aop">
+    	<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+    </context:component-scan>
+    <!-- 启用@AspectJ支持 -->
+    <aop:aspectj-autoproxy/>
+    
+    
 	<!--配置bean,配置后该类由spring管理 -->
 	<bean id="springAction" class="spring.ioc.SpringAction">
 		<!--对象注入,配置当前类中相应的属性 -->
@@ -23,6 +33,7 @@
 		<!-- 普通属性注入 -->
 		<property name="username" value="张三"></property>
 	</bean>
+	<bean id="userp" class="spring.ioc.test.User" p:username = "张三"></bean>
 
 	<bean id="users" class="spring.ioc.test.Users">
 		<!-- List注入 -->
@@ -89,12 +100,15 @@
 		<!-- Map注入 -->
 		<property name="homesMap">
 			<map>
+				<!-- 引用元素 -->
 				<entry key="1">
 					<ref bean="home1"/>
 				</entry>
 				<entry key="2">
 					<ref bean="home2"/>
 				</entry>
+				<!-- 普通元素 -->
+				<entry key="3" value="123"></entry>
 			</map>
 		</property>
 

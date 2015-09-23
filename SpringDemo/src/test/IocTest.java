@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import junit.framework.TestCase;
+import spring.aop.Hello;
+import spring.aop.HelloImpl;
 import spring.ioc.SpringAction;
 import spring.ioc.test.Home;
 import spring.ioc.test.JdbcProperties;
@@ -18,8 +20,7 @@ import spring.ioc.test.Users;
 
 public class IocTest extends TestCase {
 
-	public void testioc() {
-		@SuppressWarnings("resource")
+	public void testIoc() {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/beans.xml");
 		/*
 		 * // 对象注入 SpringAction springAction = (SpringAction)
@@ -31,12 +32,14 @@ public class IocTest extends TestCase {
 		 * ctx.getBean("jdbcProperties"); Iterator<?> it =
 		 * jdbcProperties.getProps().entrySet().iterator(); while (it.hasNext())
 		 * {
-		 * 
 		 * @SuppressWarnings("rawtypes") Map.Entry entry = (Map.Entry)
 		 * it.next(); Object key = entry.getKey(); Object value =
 		 * entry.getValue(); System.out.println(key + ":" + value); }
 		 */
-		UserHome userHome = ctx.getBean("userHome",UserHome.class);
+		User userp = ctx.getBean("userp", User.class);
+		System.out.println(userp.getUsername());
+
+		UserHome userHome = ctx.getBean("userHome", UserHome.class);
 		System.out.println("***********普通属性注入***********");
 		System.out.println(userHome.getUsername());
 		System.out.println(userHome.getAge());
@@ -60,7 +63,7 @@ public class IocTest extends TestCase {
 		Map homesMap = userHome.getHomesMap();
 		Home home = (Home) homesMap.get("1");
 		System.out.println(home.getHomeAddr());
-		
+
 		for (Object key : homesMap.keySet()) {
 			Object value = homesMap.get(key);
 			System.out.println("Key = " + key + ", Value = " + value);

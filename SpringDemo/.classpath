@@ -9,5 +9,10 @@
 	<classpathentry kind="lib" path="lib/spring-context-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-core-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-expression-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aop-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aspects-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjrt-1.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjweaver-1.7.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
